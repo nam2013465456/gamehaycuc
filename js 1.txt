@@ -45,3 +45,4 @@ startBtn.addEventListener("click", () => {
     canvas.style.display = "block";
     update();
 });
+console.log("Script đã chạy!");
