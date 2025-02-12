@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    border: 1px solid white;
+    display: none;
+}
+
+#startBtn {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}

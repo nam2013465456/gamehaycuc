@@ -1,0 +1,47 @@
+bullet.x < asteroid.x + asteroid.width &&
+                bullet.x + bullet.width > asteroid.x &&
+                bullet.y < asteroid.y + asteroid.height &&
+                bullet.y + bullet.height > asteroid.y
+            ) {
+                asteroids.splice(index, 1);
+                bullets.splice(bulletIndex, 1);
+                score++;
+                explosionSound.play();
+                spawnExplosion(asteroid.x, asteroid.y);
+            }
+        });
+
+        if (asteroid.y > canvas.height) asteroids.splice(index, 1);
+    });
+
+    // Vẽ hiệu ứng nổ
+    explosions.forEach((explosion, index) => {
+        ctx.drawImage(explosionImg, explosion.x, explosion.y, 50, 50);
+        explosion.frame++;
+        if (explosion.frame > 10) explosions.splice(index, 1);
+    });
+
+    // Hiển thị điểm và mạng sống
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Điểm: " + score, 10, 20);
+    ctx.fillText("Mạng: " + lives, 10, 50);
+    ctx.fillText("Kỷ lục: " + highScore, 10, 80);
+
+    requestAnimationFrame(update);
+}
+
+// Cập nhật điểm cao nhất
+function updateHighScore() {
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", highScore);
+    }
+}
+
+// Bắt đầu game khi nhấn nút
+startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
+    canvas.style.display = "block";
+    update();
+});
