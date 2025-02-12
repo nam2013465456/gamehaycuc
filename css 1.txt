@@ -14,3 +14,8 @@ canvas {
     font-size: 20px;
     cursor: pointer;
 }
+canvas {
+    border: 1px solid white;
+    display: block; /* Thay vì none */
+    margin: auto;
+}
